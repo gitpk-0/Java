@@ -1,4 +1,4 @@
-Notes
+Printing
 
 Program Boilerplate
 
@@ -15,11 +15,5 @@ public class Example {
 Execution of the program starts from the line that follows public static void main(String[] args) {, and ends at the closing curly bracket }
 
 
-
-
-
-
-
-
-
-LEFT OFF @: p1 printing
+System.out.println(""); shortcut:
+On a blank line within main, type sout then press tab
