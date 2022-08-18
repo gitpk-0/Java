@@ -1,14 +1,14 @@
-// import the list to make it available to the program
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ThirdElement {
+public class ListSize {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<String> list = new ArrayList<>();
+        
         while (true) {
             String input = scanner.nextLine();
             if (input.equals("")) {
@@ -16,8 +16,9 @@ public class ThirdElement {
             }
 
             list.add(input);
-        }
 
-        System.out.println(list.get(2));
+        }
+        int total = list.size();
+        System.out.println(total);
     }
 }
