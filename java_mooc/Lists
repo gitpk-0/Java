@@ -58,3 +58,8 @@ integers.add(integer);
 ArrayList<Double> doubles = new ArrayList<>();
 double d = 4.2;
 doubles.add(d);
+
+
+FOR EACH LOOP
+
+In practice, the for-each loop examines the values of the list in order one at a time. The expression is defined in the following format: for (TypeOfVariable nameOfVariable: nameOfList), where TypeOfVariable is the list's element type, and nameOfVariable is the variable that is used to store each value in the list as we go through it.
