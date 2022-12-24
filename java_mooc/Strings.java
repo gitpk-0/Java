@@ -61,6 +61,7 @@ if (!(text.equals("cake"))) {  // true if the condition text.equals("cake") is f
 
 // Splitting a String
 // split method of the String class
+// Splitting a string always produces an array of strings.
 String text = "first second third fourth";
 String[] pieces = text.split(" ");
 System.out.println(pieces[0]);
@@ -94,3 +95,11 @@ if (!text.contains("tin")) {
 String text = "Hello world!";
 char character = text.charAt(0);
 System.out.println(character);
+
+
+
+// Length of a string
+// length() method
+String word = "equisterian";
+int length = word.length();
+System.out.println("The length of the word" + word + " is " + length);
