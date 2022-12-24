@@ -73,3 +73,24 @@ System.out.println();
 for (int i = 0; i < pieces.length; i++) {
     System.out.println(pieces[i]);
 }
+
+
+
+// Contains method
+String text = "volcanologist";
+
+if (text.contains("can")) {
+    System.out.println("can was found");
+}
+
+if (!text.contains("tin")) {
+    System.out.println("tin wasn't found");
+}
+
+
+
+// charAt method  
+// get a character at a specified index
+String text = "Hello world!";
+char character = text.charAt(0);
+System.out.println(character);
