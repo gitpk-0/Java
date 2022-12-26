@@ -29,4 +29,7 @@ integers.add(65);
 integers.add(111);
 
 // we print the size of the integers object
-System.out.println(integers.size());
+System.out.println(integers.size()); // prints 4
+
+// An object is always instantiated by calling a method that created an object, 
+// i.e., a constructor by using the new keyword.
