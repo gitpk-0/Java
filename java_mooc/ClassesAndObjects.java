@@ -33,3 +33,34 @@ System.out.println(integers.size()); // prints 4
 
 // An object is always instantiated by calling a method that created an object, 
 // i.e., a constructor by using the new keyword.
+
+
+// CREATING CLASSES
+
+/** 
+ * A class specifies what the objects instantiated from it are like:
+
+    The object's variables (instance variables) specify the internal state of
+        the object
+
+    The object's methods specify what the object does
+
+We'll now familiarize ourselves with creating our own classes and defining the 
+variable that belong to them.
+**/
+
+public class Person {
+    private String name;
+    private int age;
+}
+
+/** 
+ * We specify above that each object created from the Person class has a name 
+ * and an age. Variables defined inside a class are called instance variables, 
+ * or object fields or object attributes. Other names also seem to exist.
+
+Instance variables are written on the lines following the class definition 
+public class Person {. Each variable is preceded by the keyword private. The 
+keyword private means that the variables are "hidden" inside the object. This 
+is known as encapsulation.
+**/
