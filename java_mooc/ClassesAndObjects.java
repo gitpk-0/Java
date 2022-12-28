@@ -114,3 +114,32 @@ public class Person {
         this.name = initialName;
     }
 }
+
+// Defining Methods for an Object
+
+/** 
+ * An object needs methods to be able to do anything
+ * 
+ * A method is a named section of source code inside a class which can
+ * be invoked.
+ * 
+ * A method is written inside of the class beneath the constructor. The method
+ * name is preceded by public void, since the method is intended to be visible
+ * to the outside world (public), and it does not return a value (void)
+**/
+
+public class Person {
+    private String name;
+    private int age;
+
+    public Person(String initialName) {
+        this.age = 0;
+        this.name = initialName;
+    }
+
+    // example method printPerson
+    public void printPerson() { 
+        System.out.println(this.name + ", age " + this.age + " years");
+    }
+}
+
