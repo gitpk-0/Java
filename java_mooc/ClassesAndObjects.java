@@ -143,3 +143,32 @@ public class Person {
     }
 }
 
+// Returning a Value from a Method
+
+/** 
+ * If we want the method to return a value, we need to replace the void keyword
+ * with the type of variable to be returned
+ * 
+ * In the following example, the Teacher class has a method grade that always
+ * returns an integer-type (int) variable (in this case, the value 10)
+ * 
+ * The value is always returned with the return command:
+**/
+
+public class Teacher {
+    public int grade() {
+        return 10;
+    }
+}
+
+// The method above returns an int type variable of 10 when called
+// For the return value to be used, it needs to be assigned to a variable:
+
+public static void main(String[] args) {
+    Teacher teacher = new Teacher();
+
+    int grading = teacher.grade();
+
+    System.out.println("The grade received is " + grading);
+    // prints The grade received is 10
+}

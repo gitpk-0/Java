@@ -19,3 +19,6 @@ public class Main {
         mortgage.printBalance();
     }
 }
+
+
+// returning a value from a method
