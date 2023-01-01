@@ -238,3 +238,56 @@ public static void main(String[] args) {
 System.out.println(antti);
 // Java extends the above call at run time to the following form:
 System.out.println(antti.toString());
+
+
+
+// Method Parameters example:
+public class Person {
+    private String name;
+    private int age;
+    private int weight;
+    private int height;
+
+    public Person(String initialName) {
+        this.age = 0;
+        this.weight = 0;
+        this.height = 0;
+        this.name = initialName;
+    }
+
+    public void setHeight(int newHeight) {
+        this.height = newHeight;
+    }
+
+    public void setWeight(int newWeight) {
+        this.weight = newWeight;
+    }
+
+    public double bodyMassIndex() {
+        double heigthPerHundred = this.height / 100.0;
+        return this.weight / (heigthPerHundred * heigthPerHundred);
+    }
+
+    // ...
+}
+
+// In the above example Java's standard naming convention is used once again:
+//   If the methods only purpose is to set a value to an instance variable,
+//   then it's named as setVariableName
+// Value-setting methods are often called "setters"
+
+
+// A parameter and instance variable having the same name:
+public class Person {
+    private int height;
+
+    public void setHeight(int height) {
+        // DON'T DO THIS!!!
+        height = height;
+    }
+
+    public void setHeight(int height) {
+        // DO THIS INSTEAD!!!
+        this.height = height;
+    }
+}
