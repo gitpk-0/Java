@@ -172,3 +172,31 @@ public static void main(String[] args) {
     System.out.println("The grade received is " + grading);
     // prints The grade received is 10
 }
+
+// The method below returns a boolean:
+
+public class Person {
+    // ...
+
+    public boolean isOfLegalAge() {
+        if (this.age < 18) {
+            return false;
+        }
+
+        return true;
+    }
+
+    
+    // The method could have been written more succinctly in the following way:
+
+    public boolean isOfLegalAge() {
+        return this.age >= 18;
+    }
+}
+
+/* 
+    It is the convention in Java to name a method that returns an instance
+        variable exactly this way:  getVariableName
+
+    Such methods are often referred to as "getters"
+*/
