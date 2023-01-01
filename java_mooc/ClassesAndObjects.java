@@ -291,3 +291,18 @@ public class Person {
         this.height = height;
     }
 }
+
+// Calling an internal method
+
+public String toString() {
+    return this.name + ", age " + this.age + " years, my BMI is " + this.bodyMassIndex();
+}
+
+// When an object calls an internal method, the name of the method and 
+// this prefix suffice
+
+// Alternatively:
+public String toString() {
+    return this.name + ", age " + this.age + " years, my BMI is " + bodyMassIndex();
+} // no emphasis is placed on the fact that the object's own method is being called
+
