@@ -200,3 +200,41 @@ public class Person {
 
     Such methods are often referred to as "getters"
 */
+
+
+
+// toString Method
+/* The method returning the string representation is always toString in Java */
+
+public class Person {
+    // ...
+
+    public String toString() {
+        return this.name + ", age " + this.age + " years";
+    }
+}
+
+// The method is used in a somewhat surprising way:
+public static void main(String[] args) {
+    Person pekka = new Person("Pekka");
+    Person antti = new Person("Antti");
+
+    int i = 0;
+    while (i < 30) {
+        pekka.growOlder();
+        i = i + 1;
+    }
+
+    antti.growOlder();
+
+    System.out.println(antti); // same as System.out.println(antti.toString());
+    System.out.println(pekka); // same as System.out.println(pekka.toString());
+}
+
+// The call to the toString method returning the string representation does not 
+// have to be written explicitly, as Java adds it automatically.
+
+// ==
+System.out.println(antti);
+// Java extends the above call at run time to the following form:
+System.out.println(antti.toString());
