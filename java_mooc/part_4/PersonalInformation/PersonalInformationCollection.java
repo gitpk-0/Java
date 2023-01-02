@@ -31,7 +31,5 @@ public class PersonalInformationCollection {
         for (PersonalInformation p: infoCollection) {
             System.out.println(p.getFirstName() + " " + p.getLastName());
         }
-
-
     }
 }

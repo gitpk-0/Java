@@ -334,6 +334,30 @@ for (Person person: persons) {
 
 
 
+/* Looping through list elements */
+
+// several different repeat statements can be used to go through the list elements
+
+// 1. while loop
+int index = 0;
+while (index < names.size()) {
+    System.out.println(names.get(index));
+    index = index + 1;
+}
+
+// 2. for loop with index
+for (int i = 0; i < names.size(); i++) {
+    System.out.println(names.get(i));
+}
+
+System.out.println();
+// 3. for each loop (no index)
+for (String name: names) {
+    System.out.println(name);
+}
+
+
+
 /* Multiple constructor parameters */
 
 public class Person {
@@ -351,4 +375,49 @@ public class Person {
     }
 
     // methods
+}
+
+
+// Reading input in a specific format:
+
+Scanner scanner = new Scanner(System.in);
+ArrayList<Person> persons = new ArrayList<>();
+
+// Read person information from the user
+System.out.println("Enter the person details separated by a comma, e.g.: Randall,2");
+while (true) {
+    System.out.print("Enter the details, empty will stop: ");
+    String details = scanner.nextLine();
+    if (details.isEmpty()) {
+        break;
+    }
+
+    String[] parts = details.split(",");
+    String name = parts[0];
+    int age = Integer.valueOf(parts[1]);
+    persons.add(new Person(name, age));
+}
+
+// Print the number of the entered persons, and the persons themselves
+System.out.println();
+System.out.println("Total number of persons: " + persons.size());
+System.out.println("Persons: ");
+
+for (Person person: persons) {
+    System.out.println(person);
+}
+
+
+
+/* Filtered printing from the list: */
+
+// Assume we have a 'persons' list that consists of person objects
+
+System.out.print("What is the age limit? ");
+int ageLimit = Integer.valueOf(scanner.nextLine());
+
+for (Person person: persons) {
+    if (person.getAge() >= ageLimit) {
+        System.out.println(person);
+    }
 }
