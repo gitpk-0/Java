@@ -41,6 +41,8 @@ if (text.equals("marzipan")) {
 String text = "course";
 String anotherText = "horse";
 
+
+// String comparison - compare
 if (text.equals(anotherText)) {
     System.out.println("The two texts are equal!");
 } else {
