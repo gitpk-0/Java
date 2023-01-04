@@ -16,7 +16,7 @@ public class GuestListFromAFile {
         try (Scanner reader = new Scanner(Paths.get(file))) {
             while (reader.hasNextLine()) {
                 String row = reader.nextLine();
-                list.add(row)
+                list.add(row);
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
