@@ -50,3 +50,39 @@ try (Scanner scanner = new Scanner(Paths.get("file.txt"))) {
 } catch (Exception e) {
     System.out.println("Error: " + e.getMessage());
 }
+
+
+// An Empty Line in a File
+
+/* 
+Sometimes an empty line finds it way into a file. Skipping an empty line can 
+be done using the command continue and the isEmpty-method of the string.
+
+In the example below, we read from a file
+
+Reading data is straightforward.
+*/
+
+
+
+
+// Reading Data of a Specific Format From a File
+
+// csv format
+Scanner scanner = new Scanner(System.in);
+
+while (true) {
+System.out.print("Enter name and age separated by a comma: ");
+String line = scanner.nextLine();
+
+if (line.equals("")) {
+break;
+}
+
+String[] parts = line.split(",");
+String name = parts[0];
+int age = Integer.valueOf(parts[1]);
+
+System.out.println("Name: " + name);
+System.out.println("Age: " + age);
+}
