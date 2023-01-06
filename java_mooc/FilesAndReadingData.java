@@ -86,3 +86,30 @@ int age = Integer.valueOf(parts[1]);
 System.out.println("Name: " + name);
 System.out.println("Age: " + age);
 }
+
+
+
+
+// Reading Objects from a File
+
+
+ArrayList<Person> people = new ArrayList<>();
+
+try (Scanner scanner = new Scanner(Paths.get("records.txt"))) {
+
+    while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+
+        String[] parts = line.split(",");
+        String name = parts[0];
+        int age = Integer.valueOf(parts[1]);
+
+        people.add(new Person(name, age));
+    }
+}
+
+System.out.println("Total amount of people read: " + people.size());
+
+/* Reading objects from a file is a clear responsibility in and of iteself, and
+should for that reason be isolated into a method */
+
