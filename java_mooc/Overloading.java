@@ -1,4 +1,4 @@
-/* Constructor Overloading */
+/* Constructor and Method Overloading */
 
 public Person(String name) {
         this.name = name;
@@ -49,4 +49,33 @@ public static void main(String[] args) {
 
     System.out.println(paul);
     System.out.println(eve);
+}
+
+
+//
+//
+
+/* Method Overloading */
+/* Methods can be overloaded in the same way as constructors, i.e., multiple
+versions of a given method can be created.
+
+The parameters of the different versions must be different. */
+
+// Another version of growOlder():
+public void growOlder() {
+    this.age = this.age + 1;
+}
+
+public void growOlder(int years) {
+    this.age = this.age + years;
+}
+
+// We may also modify the program so that the parameterless method is
+//  implemented using the method growOlder(int years):
+public void growOlder() {
+    this.growOlder(1);
+}
+
+public void growOlder(int years) {
+    this.age = this.age + years;
 }
