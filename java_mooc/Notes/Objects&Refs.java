@@ -211,3 +211,59 @@ message is useful: it tells which row caused the error. */
 //
 // Object as a method parameter
 //
+
+public class AmusementParkRide {
+    private String name;
+    private int lowestHeight;
+
+    public AmusementParkRide(String name, int lowestHeight) {
+        this.name = name;
+        this.lowestHeight = lowestHeight;
+    }
+
+    // passing a person object to the allowedToRide method
+    public boolean allowedToRide(Person person) { 
+        if (person.getHeight() < this.lowestHeight) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public String toString() {
+        return this.name + ", minimum height: " + this.lowestHeight;
+    }
+}
+
+// another example:
+Person matt = new Person("Matt");
+matt.setWeight(86);
+matt.setHeight(180);
+
+Person jasper = new Person("Jasper");
+jasper.setWeight(34);
+jasper.setHeight(132);
+
+AmusementParkRide waterTrack = new AmusementParkRide("Water track", 140);
+
+if (waterTrack.allowedToRide(matt)) {
+    System.out.println(matt.getName() + " may enter the ride");
+} else {
+    System.out.println(matt.getName() + " may not enter the ride");
+}
+
+if (waterTrack.allowedToRide(jasper)) {
+    System.out.println(jasper.getName() + " may enter the ride");
+} else {
+    System.out.println(jasper.getName() + " may not enter the ride");
+}
+
+System.out.println(waterTrack);
+// output:
+// Matt may enter the ride
+// Jasper may not enter the ride
+// Water track, minimum height: 140
+
+/* Assisted creation of constructors, getters, and setters
+IntelliJ IDEA = Shift + G (custom)
+IntelliJ IDEA = Alt + Insert (default)
