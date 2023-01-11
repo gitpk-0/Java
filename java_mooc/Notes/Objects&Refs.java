@@ -690,3 +690,7 @@ public class Person {
 
     // .. methods
 }
+// notice a generic Object passed to equals, not the Person type object
+// this is why the third step casts the object to a Person object
+
+// What is Object?
