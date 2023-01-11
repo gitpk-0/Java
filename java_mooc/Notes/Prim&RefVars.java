@@ -155,3 +155,208 @@ public class Example {
 //
 // Reference Variables
 //
+
+/* All of the variables provided by Java (other than the eight primitive 
+variables mentioned above) are reference type. A programmer is also free to 
+create their own variable types by defining new classes. In practice, any 
+object instanced from a class is a reference variable.
+
+Let's look at the example from the beginning of the chapter where we created a 
+variable called 'leevi' of type Name: */
+
+Name leevi = new Name("Leevi");
+
+ // The call has the following parts:
+
+// Whenever a new variable is declared, its type must be stated first. We declare 
+// a variable of type Name below. For the program to execute successfully, 
+// there must be a Name class available for the program to use. */
+
+Name ...
+
+// We state the name of the variable as its declared. You can reference the 
+// value of the variable later on by its name. Below, the variable name is 
+// defined as leevi.
+
+Name leevi...
+
+// Values can be assigned to variables. Objects are created from classes by 
+// calling the class constructor. This constructor defines the values assigned 
+// to the instance variables of the object being created. We're assuming in the 
+// example below that the class Name has a constructor that takes a string 
+// as parameter.
+
+... new Name("Leevi");
+
+// The constructor call returns a value that is a reference to the 
+// newly-created object. The equality sign tells the program that the value of 
+// the right-hand side expression is to be copied as the value of the variable 
+// on the left-hand side. The reference to the newly-created object, returned 
+// by the constructor call, is copied as the value of the variable leevi.
+
+Name leevi = new Name("Leevi");
+
+
+/////
+
+/* The most significant difference between primitive and reference variables is 
+that primitives (usually numbers) are immutable. The internal state of reference
+variables, on the other hand, can typically be mutated. This has to do with the
+fact that the value of a primitive variable is stored directly in the 
+variable, whereas the value of a reference variable is a reference to the 
+variable's data, i.e., its internal state.
+
+Arithmetic operations, such as addition, subtraction, and multiplication can be 
+used with primitive variables — these operations do not change the original 
+values of the variables. Arithmetic operations create new values that can be 
+stored in variables as needed. Conversely, the values of reference variables 
+cannot be changed by these arithmetic expressions.
+
+The value of a reference variable — i.e., the reference — points to a location 
+that contains information relating to the given variable. Let's assume that we 
+have a Person class available to us, containing an instance variable 'age'. 
+If we've instantiated a person object from the class, we can get our hands on 
+the age variable by following the object's reference. The value of this age 
+variable can then be changed as needed. */
+
+
+// //
+
+/* Primative and Reference Variable as Method Parameters */
+
+/* We mentioned earlier that the value of a primitive variable is directly 
+stored in the variable, whereas the value of a reference variable holds a 
+reference to an object. We also mentioned that assigning a value with the 
+equality sign copies the value (possibly of some variable) on the right-hand 
+side and stores it as the value of the left-hand side variable.
+
+A similar kind of copying occurs during a method call. Regardless of whether 
+the variable is primitive or reference type, the value passed to the method as 
+an argument is copied for the called method to use. With primitive variables, 
+the value of the variable is conveyed to the method. With reference variables, 
+it's a reference.
+
+Let's look at this in practice and assume that we have the following Person 
+class available to us: */
+
+public class Person {
+    private String name;
+    private int birthYear;
+
+    public Person(String name) {
+        this.name = name;
+        this.birthYear = 1970;
+    }
+
+    public int getBirthYear() {
+        return this.birthYear;
+    }
+
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
+    }
+
+    public String toString() {
+        return this.name + " (" + this.birthYear + ")";
+    }
+}
+// //
+public class Example {
+    public static void main(String[] args) {
+        Person first = new Person("First");
+
+        System.out.println(first);
+        youthen(first);
+        System.out.println(first);
+
+        Person second = first;
+        youthen(second);
+
+        System.out.println(first);
+    }
+
+    public static void youthen(Person person) {
+        person.setBirthYear(person.getBirthYear() + 1);
+    }
+}
+// outputs:
+// First (1970)
+// First (1971)
+// First (1972)
+
+/* The program's execution starts off from the first line of the main method. 
+A variable of type Person is declared on its first line, and the value returned 
+by the Person class constructor is copied as its value. The constructor creates 
+an object whose birth year is set to 1970 and whose name is set to the value 
+received as a parameter. The constructor returns a reference. Once the row has 
+been executed, the program's state is the following — a Person object has been 
+created in memory and the first variable defined in the main method contains 
+a reference to it.
+
+On the third row of the main method, we print the value of the variable first. 
+The method call System.out.println searches for the toString method on the 
+reference variable that has been given to it as the parameter. The Person class 
+has the toString method, so this method is called on the object referenced by 
+the first variable. The value of the name variable in that object is "First", 
+and the value of the birthYear variable is 1970. 
+The output becomes "First (1970)".
+
+On the fourth row, the program calls the youthen method, to which we pass the 
+variable first as an argument. When the method youthen is called, the value of 
+the parameter variable is copied to be used by the youthen method. The execution
+of the main method remains waiting in the call stack. As the variable first is 
+a reference type, the reference that was created earlier is copied for the 
+method's use. At the end of the method execution, the situation is as 
+follows — the method increments the birth year of the object it receives 
+as a parameter by one.
+
+When the execution of the method makeYounger ends, we return back to the main 
+method. The information related to the execution of the makeYounger disappears 
+from the call stack.
+
+Once we've returned from the method call, we once again print the value of the 
+variable first. The object referenced by the variable first has been mutated 
+during the youthen method call: the birthYear variable of the object has been 
+incremented by one. The final value printed is "First (1971)".
+
+A new Person-type variable called second is then declared in the program. The 
+value of the variable first is copied to the variable second, i.e., the value 
+of the variable second becomes a reference to the already-existing Person
+object.
+
+The program calls the youthen method after this, which is given the second 
+variable as a parameter. The value of the variable passed during the method 
+call is copied as a value for the method, i.e., the method receives the 
+reference contained in the second variable for its use. After the method's 
+execution, the birth year of the object referenced by the method has 
+increased by one.
+
+Finally, the method execution ends, and the program returns to the main method 
+where the value of the variable first is printed one more time. The final result
+of the print is "First(1972)".  */
+
+
+// //
+// //
+
+/* Variables and Computer Memory */
+
+/* In the course's material, concrete details related to variables and computer 
+memory are simplified. Topics related to memory are dealt with on a level of 
+abstraction that's suitable for learning programming. As an example, the 
+description that the statement int number = 5 reserves a location for the 
+variable number in the memory, and copies the value 5 into it, is sufficient 
+with regard to the learning objectives of this course.
+
+From the perspective of the operating system, a lot more happens when the 
+statement int number = 5 is executed. A locker of size 32-bits is reserved in 
+memory for the value 5, and another one for the number variable. The size of 
+the location is determined by the type of variable in question. Once this is 
+done, the contents of the memory location storing the value 5 are copied into 
+the memory location of the number variable.
+
+To add to the above, the number variable is technically not a memory location 
+or a container. The value of the variable number is an address in memory — 
+information attached to the variable about its type specifies how much data 
+should be retrieved from its address. As an example, this is 32 bits for an 
+integer. */
