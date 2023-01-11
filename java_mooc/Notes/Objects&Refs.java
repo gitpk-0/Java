@@ -394,3 +394,126 @@ public class Example {
 
     }
 }
+
+
+// //
+
+//
+// Object of same type as method parameter
+//
+
+public class Person {
+    // ...
+
+    public boolean olderThan(Person compared) {
+        // 1. First compare years
+        int ownYear = this.getBirthday().getYear();
+        int comparedYear = compared.getBirthday().getYear();
+
+        if (ownYear < comparedYear) {
+            return true;
+        }
+
+        if (ownYear > comparedYear) {
+            return false;
+        }
+
+        // 2. Same birthyear, compare months
+        int ownMonth = this.getBirthday().getMonth();
+        int comparedMonth = compared.getBirthday().getMonth();
+
+        if (ownMonth < comparedMonth) {
+            return true;
+        }
+
+        if (ownMonth > comparedMonth) {
+            return false;
+        }
+
+        // 3. Same birth year and month, compare days
+        int ownDay = this.getBirthday().getDay();
+        int comparedDay = compared.getBirthday().getDay();
+
+        if (ownDay < comparedDay) {
+            return true;
+        }
+
+        return false;
+    }
+}
+
+Person muhammad = new Person("Muhammad ibn Musa al-Khwarizmi", 1, 1, 780);
+Person pascal = new Person("Blaise Pascal", 19, 6, 1623);
+
+if (muhammad.olderThan(pascal)) {  //  same as muhammad.olderThan(pascal)==true
+    System.out.println(muhammad.getName() + " is older than " + pascal.getName());
+} else {
+    System.out.println(muhammad.getName() + " is not older than " + pascal.getName());
+}
+// output:
+// Muhammad ibn Musa al-Khwarizmi is older than Blaise Pascal
+
+/* Let's pause for a moment to consider abstraction, one of the principles of 
+object-oriented programming. The idea behind abstraction is to conceptualize 
+the programming code so that each concept has its own clear responsibilities. 
+When viewing the solution above, however, we notice that the comparison 
+functionality would be better placed inside the SimpleDate class instead of 
+the Person class.
+
+We'll create a method called public boolean before(SimpleDate compared) for the 
+class SimpleDate. The method returns the value true if the date given as the 
+parameter is after (or on the same day as) the date of the object whose 
+method is called. */
+
+public class SimpleDate {
+    private int day;
+    private int month;
+    private int year;
+
+    public SimpleDate(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
+    public String toString() {
+        return this.day + "." + this.month + "." + this.year;
+    }
+
+    // used to check if this date object (`this`) is before
+    // the date object given as the parameter (`compared`)
+    public boolean before(SimpleDate compared) {
+        // first compare years
+        if (this.year < compared.year) {
+            return true;
+        }
+
+        if (this.year > compared.year) {
+            return false;
+        }
+
+        // years are same, compare months
+        if (this.month < compared.month) {
+            return true;
+        }
+
+        if (this.month > compared.month) {
+            return false;
+        }
+
+        // years and months are same, compare days
+        if (this.day < compared.day) {
+            return true;
+        }
+
+        return false;
+    }
+}
+
+/* Even though the object variables year, month, and day are encapsulated 
+(private) object variables, we can read their values by writing 
+compared.*variableName*. This is because a private variable can be accessed 
+from all the methods contained by that class. Notice that the syntax here 
+matches calling some object method. Unlike when calling a method, we refer 
+to a field of an object, so the parentheses that indicate a method call 
+are not written.
