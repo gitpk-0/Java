@@ -133,3 +133,81 @@ System.out.println(joan);
 /* So in the beginning the variable joan contains a reference to one object, 
 but in the end a reference to another object has been copied as its value. 
 Here is a picture of the situation after the last line of code.
+
+// //
+
+
+/* null value of a reference variable */
+
+/* Let's extend the example further by setting the value of the reference 
+variable ball to null, i.e. a reference "to nothing". The null reference can 
+be set as the value of any reference type variable. */
+
+Person joan = new Person("Joan Ball");
+System.out.println(joan);
+
+Person ball = joan;
+ball.growOlder();
+ball.growOlder();
+
+System.out.println(joan);
+
+joan = new Person("Joan B.");
+System.out.println(joan);
+
+ball = null;
+
+/* The object whose name is Joan Ball is referred to by nobody. In other words, 
+the object has become "garbage". In the Java programming language the programmer
+need not worry about the program's memory use. From time to time, the automatic
+garbage collector of the Java language cleans up the objects that have become 
+garbage. If the garbage collection did not happen, the garbage objects would 
+reserve a memory location until the end of the program execution.
+
+Let's see what happens when we try to print a variable that references "nothing"
+i.e. null: */
+
+Person joan = new Person("Joan Ball");
+System.out.println(joan);
+
+Person ball = joan;
+ball.growOlder();
+ball.growOlder();
+
+System.out.println(joan);
+
+joan = new Person("Joan B.");
+System.out.println(joan);
+
+ball = null;
+System.out.println(ball);
+// output:
+// Joan Ball, age 0 years
+// Joan Ball, age 2 years
+// Joan B., age 0 years
+// null
+
+/* Printing a null reference prints "null". How about if we were to try and call
+a method, say growOlder, on an object that refers to nothing: */
+
+Person joan = new Person("Joan Ball");
+System.out.println(joan);
+
+joan = null;
+joan.growOlder();
+// output:
+// Joan Ball, age 0 years
+// Exception in thread "main" java.lang.NullPointerException
+// at Main.main(Main.java:(row))
+// Java Result: 1
+
+/* In the course of the program, there occured an error indicating that we 
+called a method on a variable that refers to nothing. Fortunately, the error 
+message is useful: it tells which row caused the error. */
+
+// //
+
+
+//
+// Object as a method parameter
+//
