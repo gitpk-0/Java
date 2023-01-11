@@ -517,3 +517,176 @@ from all the methods contained by that class. Notice that the syntax here
 matches calling some object method. Unlike when calling a method, we refer 
 to a field of an object, so the parentheses that indicate a method call 
 are not written.
+
+// // 
+
+
+//
+// Comparing the equality of objects (equals)
+//
+
+/* With primitive variables such as int, comparing two variables can be done 
+with two equality signs. This is because the value of a primitive variable is 
+stored directly in the "variable's box". The value of reference variables, in 
+contrast, is an address of the object that is referenced; so the "box" contains 
+a reference to the memory location. Using two equality signs compares the 
+equality of the values stored in the "boxes of the variables" — with reference 
+variables, such comparisons would examine the equality of the memory references.
+
+The method equals is similar to the method toString in the respect that it is 
+available for use even if it has not been defined in the class. The default 
+implementation of this method compares the equality of the references. Let's 
+observe this with the help of the previously written SimpleDate class. */
+
+SimpleDate first = new SimpleDate(1, 1, 2000);
+SimpleDate second = new SimpleDate(1, 1, 2000);
+SimpleDate third = new SimpleDate(12, 12, 2012);
+SimpleDate fourth = first;
+
+if (first.equals(first)) {
+    System.out.println("Variables first and first are equal");
+} else {
+    System.out.println("Variables first and first are not equal");
+}
+
+if (first.equals(second)) {
+    System.out.println("Variables first and second are equal");
+} else {
+    System.out.println("Variables first and second are not equal");
+}
+
+if (first.equals(third)) {
+    System.out.println("Variables first and third are equal");
+} else {
+    System.out.println("Variables first and third are not equal");
+}
+
+if (first.equals(fourth)) {
+    System.out.println("Variables first and fourth are equal");
+} else {
+    System.out.println("Variables first and fourth are not equal");
+}
+// output:
+// Variables first and first are equal
+// Variables first and second are not equal
+// Variables first and third are not equal
+// Variables first and fourth are equal
+
+/* There is a problem with the program above. Even though two dates (first 
+and second) have exactly the same values for object variables, they are 
+different from each other from the point of view of the default equals method.
+
+If we want to be able to compare two objects of our own design with the equals 
+method, that method must be defined in the class. The method equals is defined 
+as a method that returns a boolean type value — the return value indicates 
+whether the objects are equal.
+
+The equals method is implemented in such a way that it can be used to compare 
+the current object with any other object. The method receives an Object-type 
+object as its single parameter — all objects are Object-type, in addition to 
+their own type. The equals method first compares if the addresses are equal: 
+if so, the objects are equal. After this, we examine if the types of the 
+objects are the same: if not, the objects are not equal. Next, the Object-type 
+object passed as the parameter is converted to the type of the object that is 
+being examined by using a type cast, so that the values of the object variables 
+can be compared. Below the equality comparison has been implemented for the 
+SimpleDate class. */
+
+public class SimpleDate {
+    private int day;
+    private int month;
+    private int year;
+
+    public SimpleDate(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
+    public int getDay() {
+        return this.day;
+    }
+
+    public int getMonth() {
+        return this.month;
+    }
+
+    public int getYear() {
+        return this.year;
+    }
+
+    public boolean equals(Object compared) {
+        // if the variables are located in the same position (address), they are equal
+        if (this == compared) {
+            return true;
+        }
+
+        // if the type of the compared object is not SimpleDate, the objects are not equal
+        if (!(compared instanceof SimpleDate)) {
+            return false;
+        }
+
+        // convert the Object type compared object
+        // into a SimpleDate type object called comparedSimpleDate
+        SimpleDate comparedSimpleDate = (SimpleDate) compared;
+
+        // if the values of the object variables are the same, the objects are equal
+        if (this.day == comparedSimpleDate.day &&
+            this.month == comparedSimpleDate.month &&
+            this.year == comparedSimpleDate.year) {
+            return true;
+        }
+
+        // otherwise the objects are not equal
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.day + "." + this.month + "." + this.year;
+    }
+}
+
+/* Building a similar comparison functionality is possible for Person objects 
+too. Below, the comparison has been implemented for Person objects that don't 
+have a separate SimpleDate object. Notice that the names of people are strings 
+(i.e. objects), so we use the equals method for comparing them. */
+
+public class Person {
+
+    private String name;
+    private int age;
+    private int weight;
+    private int height;
+
+    // constructors and methods
+
+
+    public boolean equals(Object compared) {
+        // if the variables are located in the same position, they are equal
+        if (this == compared) {
+            return true;
+        }
+
+        // if the compared object is not of type Person, the objects are not equal
+        if (!(compared instanceof Person)) {
+            return false;
+        }
+
+        // convert the object into a Person object
+        Person comparedPerson = (Person) compared;
+
+        // if the values of the object variables are equal, the objects are equal
+        if (this.name.equals(comparedPerson.name) &&
+            this.age == comparedPerson.age &&
+            this.weight == comparedPerson.weight &&
+            this.height == comparedPerson.height) {
+            return true;
+        }
+
+        // otherwise the objects are not equal
+        return false;
+    }
+
+    // .. methods
+}
