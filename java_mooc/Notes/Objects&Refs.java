@@ -264,6 +264,133 @@ System.out.println(waterTrack);
 // Jasper may not enter the ride
 // Water track, minimum height: 140
 
-/* Assisted creation of constructors, getters, and setters
+/*
+*
+Assisted creation / generation of constructors, getters, and setters
 IntelliJ IDEA = Shift + G (custom)
 IntelliJ IDEA = Alt + Insert (default)
+*
+*/
+
+// // 
+
+//
+// Object as object variable
+//
+
+public class SimpleDate {
+    private int day;
+    private int month;
+    private int year;
+
+    public SimpleDate(int day, int month, int year) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
+    public int getDay() {
+        return this.day;
+    }
+
+    public int getMonth() {
+        return this.month;
+    }
+
+    public int getYear() {
+        return this.year;
+    }
+
+    @Override
+    public String toString() {
+        return this.day + "." + this.month + "." + this.year;
+    }
+}
+
+public class Person {
+    private String name;
+    private SimpleDate birthday;
+    private int weight = 0;
+    private int length = 0;
+}
+// ...
+
+// constructor
+public Person(String name, SimpleDate date) {
+    this.name = name;
+    this.birthday = date;
+}
+
+// alternative constructor
+public Person(String name, int day, int month, int year) {
+    this.name = name;
+    this.birthday = new SimpleDate(day, month, year);
+}
+
+
+public String toString() {
+    return this.name + ", born on " + this.birthday;
+}
+
+SimpleDate date = new SimpleDate(1, 1, 780);
+Person muhammad = new Person("Muhammad ibn Musa al-Khwarizmi", date);
+Person pascal = new Person("Blaise Pascal", 19, 6, 1623);
+
+System.out.println(muhammad);
+System.out.println(pascal);
+
+// output:
+// Muhammad ibn Musa al-Khwarizmi, born on 1.1.780
+// Blaise Pascal, born on 19.6.1623
+
+/* 
+Now a person object has object variables name and birthday. The variable 
+name is a string, which itself is an object; the variable birthday is a 
+SimpleDate object.
+
+Both variables contain a reference to an object. Therefore a person object 
+contains two references. * weight and height are not considered in this example
+
+So the main program is connected to two Person objects by strands. A person has 
+a name and a birthday. Since both variables are objects, these attributes exist 
+at the other ends of the strands.
+
+Birthday appears to be a good extension to the Person class. Earlier we noted 
+that the object variable age can be calculated with birthday, so it was removed.
+*/
+
+
+// //
+
+//
+// Date in Java programs
+//
+
+/*
+In the section above, we use our own class SimpleDate to represent date, 
+because it is suitable for illustrating and practising the operation of objects.
+If you want to handle dates in your own programs, it's worth reading about the 
+premade Java class LocalDate. It contains a significant amount of functionality 
+that can be used to handle dates.
+
+LocalDate:
+https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
+
+For example, the current date can be used with the existing LocalDate class in 
+the following manner: */
+
+import java.time.LocalDate;
+
+public class Example {
+
+    public static void main(String[] args) {
+
+        LocalDate now = LocalDate.now();
+        int year = now.getYear();
+        int month = now.getMonthValue();
+        int day = now.getDayOfMonth();
+
+        System.out.println("today is  " + day + "." + month + "." + year);
+
+    }
+}
