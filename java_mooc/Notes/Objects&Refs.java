@@ -694,3 +694,87 @@ public class Person {
 // this is why the third step casts the object to a Person object
 
 // What is Object?
+
+/* Every class we create (and every ready-made Java class) inherits the class 
+Object, even though it is not specially visible in the program code. This is 
+why an instance of any class can be passed as a parameter to a method that 
+receives an Object type variable as its parameter. Inheriting the Object can 
+be seen elsewhere, too: for instance, the toString method exists even if you 
+have not implemented it yourself, just as the equals method does.
+
+To illustrate, the following source code compiles successfully: equals method 
+can be found in the Object class inherited by all classes. */
+
+public class Bird {
+    private String name;
+
+    public Bird(String name) {
+        this.name = name;
+    }
+}
+
+Bird red = new Bird("Red");
+System.out.println(red);
+
+Bird chuck = new Bird("Chuck");
+System.out.println(chuck);
+
+if (red.equals(chuck)) {
+    System.out.println(red + " equals " + chuck);
+}
+
+// //
+
+
+//
+// Object equality and lists
+//
+
+/* Let's examine how the equals method is used with lists. Let's assume we have 
+the previously described class Bird without any equals method. */
+
+public class Bird {
+    private String name;
+
+    public Bird(String name) {
+        this.name = name;
+    }
+}
+
+/* Let's create a list and add a bird to it. After this we'll check if that 
+bird is contained in it. */
+
+ArrayList<Bird> birds = new ArrayList<>()
+Bird red = new Bird("Red");
+
+if (birds.contains(red)) {
+    System.out.println("Red is on the list.");
+} else {
+    System.out.println("Red is not on the list.");
+} // Red is not on the list.
+
+birds.add(red);
+if (birds.contains(red)) {
+    System.out.println("Red is on the list.");
+} else {
+    System.out.println("Red is not on the list.");
+} // Red is on the list.
+
+
+System.out.println("However!"); // However!
+
+red = new Bird("Red");
+if (birds.contains(red)) {
+    System.out.println("Red is on the list.");
+} else {
+    System.out.println("Red is not on the list.");
+} // Red is not on the list.
+
+/* When the program switches the red object into a new object, with exactly the 
+same contents as before, it is no longer equal to the object on the list, and 
+therefore cannot be found on the list.
+
+The contains method of a list uses the equals method that is defined for the 
+objects in its search for objects. In the example above, the Bird class has no 
+definition for that method, so a bird with exactly the same contents — but a 
+different reference — cannot be found on the list. */
