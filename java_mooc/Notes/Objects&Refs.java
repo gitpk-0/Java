@@ -778,3 +778,96 @@ The contains method of a list uses the equals method that is defined for the
 objects in its search for objects. In the example above, the Bird class has no 
 definition for that method, so a bird with exactly the same contents — but a 
 different reference — cannot be found on the list. */
+
+// //
+
+
+
+//
+// Object as a method's return value
+//
+
+
+/* In the next example we present a simple counter that has the method clone. 
+The method can be used to create a clone of the counter; i.e. a new counter 
+object that has the same value at the time of its creation as the counter that 
+is being cloned. */
+
+public class Counter {
+    private int value;
+
+    // example of using multiple constructors:
+    // you can call another constructor from a constructor by calling this
+    // notice that the this call must be on the first line of the constructor
+    public Counter() {
+        this(0);
+    }
+
+    public Counter(int initialValue) {
+        this.value = initialValue;
+    }
+
+    public void increase() {
+        this.value = this.value + 1;
+    }
+
+    public String toString() {
+        return "value: " + value;
+    }
+
+    public Counter clone() {
+        // create a new counter object that receives the value of the cloned 
+        // counter as its initial value
+        Counter clone = new Counter(this.value);
+
+        // return the clone to the caller
+        return clone;
+    }
+}
+
+// An example of using counters follows:
+
+Counter counter = new Counter();
+counter.increase();
+counter.increase();
+
+System.out.println(counter);         // prints 2
+
+Counter clone = counter.clone();
+
+System.out.println(counter);         // prints 2
+System.out.println(clone);          // prints 2
+
+counter.increase();
+counter.increase();
+counter.increase();
+counter.increase();
+
+System.out.println(counter);         // prints 6
+System.out.println(clone);          // prints 2
+
+clone.increase();
+
+System.out.println(counter);         // prints 6
+System.out.println(clone);          // prints 3
+
+/* Immediately after the cloning operation, the values contained by the clone 
+and the cloned object are the same. However, they are two different objects, so 
+increasing the value of one counter does not affect the value of the other in 
+any way.
+
+Similarly, a Factory object could also be used to create and return new Car 
+objects. Below is a sketch of the outline of the factory — the factory also 
+knows the makes of the cars that are created. */
+
+public class Factory {
+    private String make;
+
+    public Factory(String make) {
+        this.make = make;
+    }
+
+    public Car procuceCar() {
+        return new Car(this.make);
+    }
+}
