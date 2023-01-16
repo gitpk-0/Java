@@ -109,3 +109,138 @@ public class AmusementParkRide {
             ", visitors: " + this.visitors;
     }
 }
+
+
+/* Printing an Object from a List */
+
+public class AmusementParkRide {
+    private String name;
+    private int minimumHeight;
+    private int visitors;
+    private ArrayList<Person> riding;
+
+    // ...
+
+    public String toString() {
+        // let's form a string from all the people on the list
+        String onTheRide = "";
+        for (Person person: riding) {
+            onTheRide = onTheRide + person.getName() + "\n";
+        }
+
+        // we return a string describing the object
+        // including the names of those on the ride
+        return this.name + ", minimum height requirement: " + this.minimumHeight +
+            ", visitors: " + this.visitors + "\n" +
+            "riding:\n" + onTheRide;
+    }
+}
+
+Person matti = new Person("Matti");
+matti.setWeigth(86);
+matti.setHeight(180);
+
+Person juhana = new Person("Juhana");
+juhana.setWeigth(34);
+juhana.setHeight(132);
+
+AmusementParkRide hurjakuru = new AmusementParkRide("Hurjakuru", 140);
+System.out.println(hurjakuru);
+
+System.out.println();
+
+if (hurjakuru.isAllowedOn(matti)) {
+    System.out.println(matti.getNimi() + " is allowed on the ride");
+} else {
+    System.out.println(matti.getNimi() + " is not allowed on the ride");
+}
+
+if (hurjakuru.isAllowedOn(juhana)) {
+    System.out.println(juhana.getNimi() + " is allowed on the ride");
+} else {
+    System.out.println(juhana.getNimi() + " is not allowed on the ride");
+}
+
+System.out.println(hurjakuru);
+
+// outputs:
+// Hurjakuru, minimum height requirement: 140, visitors: 0
+// riding:
+
+// Matti is allowed on the ride
+// Juhana is not allowed on the ride
+// Hurjakuru, minimum height requirement: 140, visitors: 1
+// riding:
+// Matti
+
+//improved
+public class AmusementParkRide {
+    private String name;
+    private int minimumHeight;
+    private int visitors;
+    private ArrayList<Person> riding;
+
+    public AmusementParkRide(String name, int minimumHeight) {
+        this.name = name;
+        this.minimumHeight = minimumHeight;
+        this.visitors = 0;
+        this.riding = new ArrayList<>();
+    }
+
+    // ...
+
+    public String toString() {
+
+        String printOutput = this.name + ", minimum height requirement: " + this.minimumHeight +
+            ", visitors: " + this.visitors + "\n";
+
+        if (riding.isEmpty()) {
+            return printOutput + "no one is on the ride.";
+        }
+
+        // we form a string from the people on the list
+        String peopleOnRide = "";
+
+        for (Person person: riding) {
+            peopleOnRide = peopleOnRide + person.getName() + "\n";
+        }
+
+        return printOutput + "\n" +
+            "on the ride:\n" + peopleOnRide;
+    }
+}
+Person matti = new Person("Matti");
+matti.setWeight(86);
+matti.setHeight(180);
+
+Person juhana = new Person("Juhana");
+juhana.setWeight(34);
+juhana.setHeight(132);
+
+AmusementParkRide hurjakuru = new AmusementParkRide("Hurjakuru", 140);
+System.out.println(hurjakuru);
+
+System.out.println();
+
+if (hurjakuru.isAllowedOn(matti)) {
+    System.out.println(matti.getName() + " is allowed on the ride");
+} else {
+    System.out.println(matti.getName() + " is not allowed on the ride");
+}
+
+if (hurjakuru.isAllowedOn(juhana)) {
+    System.out.println(juhana.getName() + " is allowed on the ride");
+} else {
+    System.out.println(juhana.getName() + " is not allowed on the ride");
+}
+
+System.out.println(hurjakuru);
+// outputs:
+// Hurjakuru, minimum height requirement: 140, visitors: 0
+// no one is on the ride.
+
+// Matti is allowed on the ride
+// Juhana is not allowed on the ride
+// Hurjakuru, minimum height requirement: 140, visitors: 1
+// on the ride:
+// Matti

@@ -11,7 +11,7 @@ public class Main {
         Message first = new Message(name1, message1);
 
         String name2 = "rick";
-        String message2 = "hello girl!";
+        String message2 = "hello universe!";
 
         Message second = new Message(name2, message2);
 
