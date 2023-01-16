@@ -351,3 +351,77 @@ System.out.println(hurjakuru.averageHeightOfPeopleOnRide());
 // Matti
 // Awak
 // 187.0
+
+
+/* Retrieving a Specific Object from a List */
+
+/* Methods that retrieve objects from a list should be implemented in the 
+following way. First off, we'll check whether or not the list is empty - if 
+it is, we return a null reference or some other value indicating that the 
+list had no values. After that, we create an object reference variable that 
+describes the object to be returned. We set the first object on the list as 
+its value. We then go through the values on the list by comparing each list 
+object with the object variable representing the object to be returned. If the 
+comparison finds a better matching object, its assigned to the object reference 
+variable to be returned. Finally, we return the object variable describing the 
+object that we want to return. */
+
+public Person getTallest() {
+    // return a null reference if there's no one on the ride
+    if (this.riding.isEmpty()) {
+        return null;
+    }
+
+    // create an object reference for the object to be returned
+    // its first value is the first object on the list
+    Person returnObject = this.riding.get(0);
+
+    // go through the list
+    for (Person prs: this.riding) {
+        // compare each object on the list
+        // to the returnObject -- we compare heights
+        // since we're searching for the tallest,
+
+        if (returnObject.getHeight() < prs.getHeight()) {
+            // if we find a taller person in the comparison,
+            // we assign it as the value of the returnObject
+            returnObject = prs;
+        }
+    }
+
+    // finally, the object reference describing the
+    // return object is returned
+    return returnObject;
+}
+
+Person matti = new Person("Matti");
+matti.setHeight(180);
+
+Person juhana = new Person("Juhana");
+juhana.setHeight(132);
+
+Person awak = new Person("Awak");
+awak.setHeight(194);
+
+AmusementParkRide hurjakuru = new AmusementParkRide("Hurjakuru", 140);
+
+hurjakuru.isAllowedOn(matti);
+hurjakuru.isAllowedOn(juhana);
+hurjakuru.isAllowedOn(awak);
+
+System.out.println(hurjakuru);
+System.out.println(hurjakuru.averageHeightOfPeopleOnRide());
+
+System.out.println();
+System.out.println(hurjakuru.getTallest().getName());
+Person tallest = hurjakuru.getTallest();
+System.out.println(tallest.getName());
+// output:
+// Hurjakuru, minimum height requirement: 140, visitors: 2
+// on the ride:
+// Matti
+// Awak
+// 187.0
+
+// Awak
+// Awak
