@@ -244,3 +244,110 @@ System.out.println(hurjakuru);
 // Hurjakuru, minimum height requirement: 140, visitors: 1
 // on the ride:
 // Matti
+
+/* Clearing an Object's List */
+
+public class AmusementParkRide {
+    // ..
+
+    public void removeEveryoneOnRide() {
+        this.riding.clear();
+    }
+
+    // ..
+}
+
+Person matti = new Person("Matti");
+matti.setWeight(86);
+matti.setHeight(180);
+
+Person juhana = new Person("Juhana");
+juhana.setWeight(34);
+juhana.setHeight(132);
+
+AmusementParkRide hurjakuru = new AmusementParkRide("Hurjakuru", 140);
+System.out.println(hurjakuru);
+
+System.out.println();
+
+if (hurjakuru.isAllowedOn(matti)) {
+    System.out.println(matti.getName() + " is allowed on the ride");
+} else {
+    System.out.println(matti.getName() + " is not allowed on the ride");
+}
+
+if (hurjakuru.isAllowedOn(juhana)) {
+    System.out.println(juhana.getName() + " is allowed on the ride");
+} else {
+    System.out.println(juhana.getName() + " is not allowed on the ride");
+}
+
+System.out.println(hurjakuru);
+
+hurjakuru.removeEveryoneOnRide();
+
+System.out.println();
+System.out.println(hurjakuru);
+// output:
+// Hurjakuru, minimum height requirement: 140, visitors: 0
+// no one is on the ride.
+
+// Matti is allowed on the ride.
+// Juhana is not allowed on the ride
+// Hurjakuru, minimum height requirement: 140, visitors: 1
+// on the ride:
+// Matti
+
+// Hurjakuru, minimum height requirement: 140, visitors: 1
+// no one is on the ride.
+
+
+/* Calculating a Sum from Objects on a List */
+
+public class AmusementParkRide {
+    private String name;
+    private int minimumHeight;
+    private int visitors;
+    private ArrayList<Person> riding;
+
+    // ..
+
+    public double averageHeightOfPeopleOnRide() {
+        if (riding.isEmpty()) {
+            return -1;
+        }
+
+        int sumOfHeights = 0;
+        for (Person per: riding) {
+            sumOfHeights += per.getHeight();
+        }
+
+        return 1.0 * sumOfHeights / riding.size();
+    }
+
+    // ..
+}
+
+Person matti = new Person("Matti");
+matti.setHeight(180);
+
+Person juhana = new Person("Juhana");
+juhana.setHeight(132);
+
+Person awak = new Henkilo("Awak");
+awak.setHeight(194);
+
+AmusementParkRide hurjakuru = new AmusementParkRide("Hurjakuru", 140);
+
+hurjakuru.isAllowedOn(matti);
+hurjakuru.isAllowedOn(juhana);
+hurjakuru.isAllowedOn(awak);
+
+System.out.println(hurjakuru);
+System.out.println(hurjakuru.averageHeightOfPeopleOnRide());
+// output:
+// Hurjakuru, minimum height requirement: 140, visitors: 2
+// on the ride:
+// Matti
+// Awak
+// 187.0
