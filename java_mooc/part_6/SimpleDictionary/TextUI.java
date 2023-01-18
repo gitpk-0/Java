@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TextUI {
@@ -11,6 +12,10 @@ public class TextUI {
     }
 
     public void start() {
+        final ArrayList<String> validCommands = new ArrayList<>();
+        validCommands.add("end");
+        validCommands.add("add");
+        validCommands.add("search");
 
         while (true) {
             System.out.println("Command: ");
@@ -43,7 +48,7 @@ public class TextUI {
                 }
             }
 
-            if (!(command.equals("end") || command.equals("add") || command.equals("search"))) {
+            if (!(validCommands.contains(command))) {
                 System.out.println("Unknown command");
             }
         }
