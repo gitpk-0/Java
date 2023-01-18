@@ -153,4 +153,27 @@ rarely fixed by adding more code to it.
 
 Programmers follow these conventions so that programming can be made easier. 
 Following them also makes it easier to read programs, to keep them up, and to 
-edit them in teams.
+edit them in teams. */
+
+// //
+
+/* 
+
+Program logic
+
+Program logic includes parts that are crucial for the execution of the program, 
+like functionalities that store information. 
+
+Separating the program logic is a major benefit for the maintenance of the 
+program.
+
+*/
+
+
+// //
+
+/*
+
+User Interface
+
+Typically each program has its own user interface.
