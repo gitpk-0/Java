@@ -17,7 +17,9 @@ The most common programming paradigms today are object-oriented programming,
 procedural programming, and functional programming. The first two of these are
 briefly discussed in what follows.
 
-Object-Oriented Programming In object-oriented programming, information is
+Object-Oriented Programming 
+
+In object-oriented programming, information is
 represented as classes that describe the concepts of the problem domain and the
 logic of the application. Classes define the methods that determine how
 information is handled. During program execution, objects are instantiated from
@@ -41,7 +43,10 @@ object-oriented programming is not inherently suited to all problems: for
 example, scientific computing and statistics applications typically make use of
 languages, such as R and Python.
 
-Procedural programming Whereas in object-oriented programming, the structure of
+
+Procedural programming 
+
+Whereas in object-oriented programming, the structure of
 a program is formed by the data it processes, in procedural programming, the
 structure of the program is formed by functionality desired for the program:
 the program acts as a step-by-step guide for the functionality to be performed.
