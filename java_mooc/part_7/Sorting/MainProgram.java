@@ -6,8 +6,8 @@ public class MainProgram {
     public static void main(String[] args) {
         // write your test code here
 
-        int[] numbers = {-1, 3, 1, 7, 4, 5, 2, 4, 3};
-        System.out.println(MainProgram.indexOfSmallestFrom(numbers, 7)); // 8
+//        int[] numbers = {-1, 3, 1, 7, 4, 5, 2, 4, 3};
+//        System.out.println(MainProgram.indexOfSmallestFrom(numbers, 7)); // 8
 
 //        int[] numbers = {8, 3, 7, 9, 1, 2, 4};
 //        System.out.println(MainProgram.indexOfSmallestFrom(numbers, 0)); // 4
@@ -33,9 +33,9 @@ public class MainProgram {
 //
 //        MainProgram.swap(numbers1, 0, 3);
 //        System.out.println(Arrays.toString(numbers1)); // [4, 3, 5, 2, 8]
-//        int[] numbers = {8, 3, 7, 9, 1, 2, 4};
-//        System.out.println(Arrays.toString(numbers));
-//        MainProgram.sort(numbers);
+
+        int[] numbers = {8, 3, 7, 9, 1, 2, 4};
+        MainProgram.sort(numbers);
     }
 
     // find the smallest value
@@ -49,21 +49,11 @@ public class MainProgram {
         return small;
     }
 
-    public static int greatest(int[] array) {
-        int great = array[0];
-        for (int num : array) {
-            if (num > great) {
-                great = num;
-            }
-        }
-        return great;
-    }
-
     // find index of the smallest value
     public static int indexOfSmallest(int[] array) {
         int index = 0;
         for (int num : array) {
-            if (num == MainProgram.smallest(array)) {
+            if (num == smallest(array)) {
                 return index;
             }
             index++;
@@ -73,21 +63,13 @@ public class MainProgram {
 
     // find the index of the smallest value after a specified value
     public static int indexOfSmallestFrom(int[] array, int startIndex) {
-        int start = startIndex;
-        int smallest = MainProgram.greatest(array); // initialize to greatest
-        for (int i = start; i <= array.length - 1; i++) {
+        int index = Integer.MAX_VALUE;
+        int smallest = Integer.MAX_VALUE;
+        for (int i = startIndex; i < array.length; i++) {
             if (array[i] < smallest) {
-                smallest = array[i];  // if duplicates in array this won't be accurate
+                smallest = array[i];
+                index = i;
             }
-        }
-        // ^^^ see comment above
-        // neither will this section vvv
-        int index = 0;
-        for (int num : array) {
-            if (num == smallest) {
-                break;
-            }
-            index++;
         }
         return index;
     }
@@ -100,12 +82,9 @@ public class MainProgram {
     }
 
     public static void sort(int[] array) {
-        int start = 0;
-        while (start < array.length - 1) {
-            MainProgram.swap(array, start, MainProgram.indexOfSmallestFrom(array, start));
-            start++;
-
+        for (int i = 0; i < array.length; i++) {
             System.out.println(Arrays.toString(array));
+            swap(array, indexOfSmallestFrom(array, i), i);
         }
     }
 }
