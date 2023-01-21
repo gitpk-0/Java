@@ -77,10 +77,11 @@ public class MainProgram {
         int smallest = MainProgram.greatest(array); // initialize to greatest
         for (int i = start; i <= array.length - 1; i++) {
             if (array[i] < smallest) {
-                smallest = array[i];
+                smallest = array[i];  // if duplicates in array this won't be accurate
             }
         }
-
+        // ^^^ see comment above
+        // neither will this section vvv
         int index = 0;
         for (int num : array) {
             if (num == smallest) {
