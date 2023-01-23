@@ -13,12 +13,12 @@ public class Main {
 //                "80\n" + "52\n"  +
 //                "-1\n";
 
-        String input = "102\n" + "-4\n"  +
-                "33\n" + "77\n" +
-                "99\n" + "1\n"  +
-                "-1\n";
+//        String input = "102\n" + "-4\n"  +
+//                "33\n" + "77\n" +
+//                "99\n" + "1\n"  +
+//                "-1\n";
 
-        Scanner scanner = new Scanner(input);
+        Scanner scanner = new Scanner(System.in);
 
         Grade grades = new Grade();
 
