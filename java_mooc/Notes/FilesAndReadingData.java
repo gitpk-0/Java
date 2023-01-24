@@ -76,7 +76,8 @@ while (true) {
     String line = scanner.nextLine();
 
     if (line.equals("")) {
-    break;
+        break;
+    }
 }
 
 String[] parts = line.split(",");

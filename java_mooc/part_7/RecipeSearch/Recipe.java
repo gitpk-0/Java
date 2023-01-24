@@ -16,6 +16,10 @@ public class Recipe {
         return this.name;
     }
 
+    public int getCookTime() {
+        return this.cookTime;
+    }
+
     public String getIngredients() {
         String output = "";
         for (String ingredient: ingredients) {
@@ -26,5 +30,9 @@ public class Recipe {
 
     public String toString() {
         return this.name + ", cooking time: " + cookTime;
+    }
+
+    public ArrayList<String> listIngredients() {
+        return ingredients;
     }
 }

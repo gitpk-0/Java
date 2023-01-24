@@ -18,4 +18,31 @@ public class RecipeBook {
             System.out.println(recipe);
         }
     }
+
+    public void getRecipeByName(String name) {
+        System.out.println("Recipes: ");
+        for (Recipe recipe: recipes) {
+            if (recipe.getRecipeName().contains(name)) {
+                System.out.println(recipe);
+            }
+        }
+    }
+
+    public void getRecipeByCookTime(int timeToCook) {
+        System.out.println("Recipes: ");
+        for (Recipe recipe: recipes) {
+            if (recipe.getCookTime() <= timeToCook) {
+                System.out.println(recipe);
+            }
+        }
+    }
+
+    public void getRecipeByIngredient(String ingredient) {
+        System.out.println("Recipes: ");
+        for (Recipe recipe: recipes) {
+            if (recipe.listIngredients().contains(ingredient)) {
+                System.out.println(recipe);
+            }
+        }
+    }
 }
