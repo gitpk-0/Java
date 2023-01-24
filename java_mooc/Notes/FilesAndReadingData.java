@@ -72,11 +72,11 @@ Reading data is straightforward.
 Scanner scanner = new Scanner(System.in);
 
 while (true) {
-System.out.print("Enter name and age separated by a comma: ");
-String line = scanner.nextLine();
+    System.out.print("Enter name and age separated by a comma: ");
+    String line = scanner.nextLine();
 
-if (line.equals("")) {
-break;
+    if (line.equals("")) {
+    break;
 }
 
 String[] parts = line.split(",");
