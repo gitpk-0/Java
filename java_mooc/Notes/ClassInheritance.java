@@ -163,3 +163,83 @@ System.out.println(engine.getManufacturer());
 
 /*As you can see, the class Engine has all the methods that are defined in the
 class Part.*/
+
+// //
+
+/*
+// Access modifiers private, protected, and public
+If a method or variable has the access modifier private, it is visible only to
+the internal methods of that class. Subclasses will not see it, and a subclass
+has no direct means to access it. So, from the Engine class there is no way to
+directly access the variables identifier, manufacturer, and description, which
+are defined in the superclass Part. The programmer cannot access the variables
+of the superclass that have been defined with the access modifier private.
+
+A subclass sees everything that is defined with the public modifier in the
+superclass. If we want to define some variables or methods that are visible to
+the subclasses but invisible to everything else, we can use the access modifier
+protected to achieve this.
+
+// Calling the constructor of the superclass
+You use the keyword super to call the constructor of the superclass. The call
+receives as parameters the types of values that the superclass constructor
+requires. If there are multiple constructors in the superclass, the parameters
+of the super call dictate which of them is used.
+
+When the constructor (of the subclass) is called, the variables defined in the
+superclass are initialized. The events that occur during the constructor call
+are practically identical to what happens with a normal constructor call. If
+the superclass doesn't provide a non-parameterized constructor, there must
+always be an explicit call to the constructor of the superclass in the
+constructors of the subclass.
+
+We demonstrate in the example below how to call this and super. The class
+Superclass includes an object variable and two constructors. One of them calls
+the other constructor with the this keyword. The class Subclass includes a
+parameterized constructor, but it has no object variables. The constructor of
+Subclass calls the parameterized constructor of the Superclass.*/
+
+public class Superclass {
+
+    private String objectVariable;
+
+    public Superclass() {
+        this("Example");
+    }
+
+    public Superclass(String value) {
+        this.objectVariable = value;
+    }
+
+    public String toString() {
+        return this.objectVariable;
+    }
+}
+public class Subclass extends Superclass {
+
+    public Subclass() {
+        super("Subclass");
+    }
+}
+Superclass sup = new Superclass();
+Subclass sub = new Subclass();
+
+System.out.println(sup);
+System.out.println(sub);
+// Sample output
+// Example
+// Subclass
+
+/*
+// Calling a superclass method
+You can call the methods defined in the superclass by prefixing the call with
+super, just as you can call the methods defined in this class by prefixing the
+call with this. For example, when overriding the toString method, you can call
+the superclass's definition of that method in the following manner:*/
+
+@Override
+public String toString() {
+    return super.toString() + "\n  And let's add my own message to it!";
+}
+
+// //
