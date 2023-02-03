@@ -243,3 +243,412 @@ public String toString() {
 }
 
 // //
+
+/*// The actual type of an object dictates which method is executed
+An object's type decides what the methods provided by the object are. For
+instance, we implemented the class Student earlier. If a reference to a Student
+type object is stored in a Person type variable, only the methods defined in
+the Person class (and its superclass and interfaces) are available:*/
+
+Person ollie = new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028");
+ollie.credits();        // DOESN'T WORK!
+ollie.study();              // DOESN'T WORK!
+System.out.println(ollie);   // ollie.toString() WORKS
+
+/*So an object has at its disposal the methods that relate to its type, and also
+to its superclasses and interfaces. The Student object above offers the methods
+defined in the classes Person and Object.
+
+In the last exercise we wrote a new toString implementation for Student to
+override the method that it inherits from Person. The class Person had already
+overriden the toString method it inherited from the class Object. If we handle
+an object by some other type than its actual type, which version of the
+object's method is called?
+
+In the following example, we'll have two students that we refer to by variables
+of different types. Which version of the toString method will be executed: the
+one defined in Object, Person, or Student?*/
+
+Student ollie = new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028");
+System.out.println(ollie);
+Person olliePerson = new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028");
+System.out.println(olliePerson);
+Object ollieObject = new Student("Ollie", "6381 Hollywood Blvd. Los Angeles 90028");
+System.out.println(ollieObject);
+
+Object alice = new Student("Alice", "177 Stewart Ave. Farmington, ME 04938");
+System.out.println(alice);
+// Sample output
+// Ollie
+//   6381 Hollywood Blvd. Los Angeles 90028
+//   credits 0
+// Ollie
+//   6381 Hollywood Blvd. Los Angeles 90028
+//   credits 0
+// Ollie
+//   6381 Hollywood Blvd. Los Angeles 90028
+//   credits 0
+// Alice
+//   177 Stewart Ave. Farmington, ME 04938
+//   credits 0
+
+/*The method to be executed is chosen based on the actual type of the object,
+which means the class whose constructor is called when the object is created.
+If the method has no definition in that class, the version of the method is
+chosen from the class that is closest to the actual type in the inheritance
+hierarchy.
+
+// Polymorphism 
+Regardless of the type of the variable, the method that is executed
+is always chosen based on the actual type of the object. Objects are
+polymorphic, which means that they can be used via many different variable
+types. The executed method always relates to the actual type of the object.
+This phenomenon is called polymorphism.
+
+// My definition of Polymorphism 
+    Objects can be extensions of similar objects in
+    programming. When a specific object is constructed, it may be assigned to an
+    object type variable that is different from its constructor object type.
+    Despite being assigned to a different object variable type, when methods are
+    called on the object, the methods will first relate to the constructed
+    objects methods, which in practice is the actual type of the object. A
+    variable is a container for an object which is able to fit many variations
+    of object types if general programming rules are followed, ultimately the
+    constructor call of the object defines its actual object type.
+
+
+Let's examine polymorphism with another example.
+
+You could represent a point in two-dimensional coordinate system with the
+following class:*/
+
+public class Point {
+
+    private int x;
+    private int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int manhattanDistanceFromOrigin() {
+        return Math.abs(x) + Math.abs(y);
+    }
+
+    protected String location(){
+        return x + ", " + y;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + this.location() + ") distance " + this.manhattanDistanceFromOrigin();
+    }
+}
+
+/*The location method is not meant for external use, which is why it is defined as
+protected. Subclasses will still be able to access the method. Manhattan
+distance means the distance between two points if you can only travel in the
+direction of the coordinate axes. It is used in many navigation algorithms, for
+example.
+
+A colored point is otherwise identical to a point, but it contains also a color
+that is expressed as a string. Due to the similarity, we can create a new class
+by extending the class Point.*/
+
+public class ColorPoint extends Point {
+
+    private String color;
+
+    public ColorPoint(int x, int y, String color) {
+        super(x, y);
+        this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " color: " + color;
+    }
+}
+
+/*The class defines an object variable in which we store the color. The
+coordinates are already defined in the superclass. We want the string
+representation to be the same as the Point class, but to also include
+information about the color. The overriden toString method calls the toString
+method of the superclass and adds to it the color of the point.
+
+Next, we'll add a few points to a list. Some of them are "normal" while others
+are color points. At the end of the example, we'll print the points on the
+list. For each point, the toString to be executed is determined by the actual
+type of the point, even though the list knows all the points by the Point
+type.*/
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(4, 8));
+        points.add(new ColorPoint(1, 1, "green"));
+        points.add(new ColorPoint(2, 5, "blue"));
+        points.add(new Point(0, 0));
+
+        for (Point p: points) {
+            System.out.println(p);
+        }
+    }
+}
+// Sample output
+// (4, 8) distance 12
+// (1, 1) distance 2 color: green
+// (2, 5) distance 7 color: blue
+// (0, 0) distance 0
+
+/*We also want to include a three-dimensional point in our program. Since it has
+no color information, let's derive it from the class Point.*/
+
+public class Point3D extends Point {
+
+    private int z;
+
+    public Point3D(int x, int y, int z) {
+        super(x, y);
+        this.z = z;
+    }
+
+    @Override
+    protected String location() {
+        return super.location() + ", " + z;    // the resulting string has the form "x, y, z"
+    }
+
+    @Override
+    public int manhattanDistanceFromOrigin() {
+        // first ask the superclass for the distance based on x and y
+        // and add the effect of the z coordinate to that result
+        return super.manhattanDistanceFromOrigin() + Math.abs(z);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + this.location() + ") distance " + this.manhattanDistanceFromOrigin();
+    }
+}
+
+/*So a three-dimensional point defines an object variable that represents the
+third dimension, and overrides the methods location,
+manhattanDistanceFromOrigin, and toString so that they also account for the
+third dimension. Let's now expand the previous example and add also
+three-dimensional points to the list.*/
+
+public class Main {
+
+    public static void main(String[] args) {
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(4, 8));
+        points.add(new ColorPoint(1, 1, "green"));
+        points.add(new ColorPoint(2, 5, "blue"));
+        points.add(new Point3D(5, 2, 8));
+        points.add(new Point(0, 0));
+
+
+        for (Point p: points) {
+            System.out.println(p);
+        }
+    }
+}
+// Sample output
+// (4, 8) distance 12
+// (1, 1) distance 2 color: green
+// (2, 5) distance 7 color: blue
+// (5, 2, 8) distance 15
+// (0, 0) distance 0
+
+/*We notice that the toString method in Point3D is exactly the same as the
+toString of Point. Could we save some effort and not override toString? The
+answer happens to be yes! The Point3D class is refined into this:
+*/
+public class Point3D extends Point {
+
+    private int z;
+
+    public Point3D(int x, int y, int z) {
+        super(x, y);
+        this.z = z;
+    }
+
+    @Override
+    protected String location() {
+        return super.location() + ", " + z;
+    }
+
+    @Override
+    public int manhattanDistanceFromOrigin() {
+        return super.manhattanDistanceFromOrigin() + Math.abs(z);
+    }
+}
+
+/*What happens in detail when we call the toString method of a three-dimensional
+  point? The execution advances in the following manner.
+
+Look for a definition of toString in the class Point3D. It does not exist, so
+the superclass is next to be examined.
+
+Look for a definition of toString in the superclass point. It can be found, so
+the code inside the implementation of the method is executed
+
+        -so the exact code to be executed is return "("+this.location
+         ()+") distance "+this.manhattanDistanceFromOrigin();
+
+        -the method location is executed first
+
+        -look for a definition of location in the class Point3D. It can be
+         found, so its code is executed.
+
+        -This location calls the location of the superclass to calculate the
+         result
+
+        -next we look for a definition of manhattanDistanceFromOrigin in the
+         Point3D class. It's found and its code is then executed
+
+        -Again, the method calls the similarly named method of the superclass
+         during its execution
+
+As we can see, the sequence of events caused by the method call has multiple
+steps. The principle, however, is clear: The definition for the method is first
+searched for in the class definition of the actual type of the object. If it is
+not found, we next examine the superclass. If the definition cannot be found
+there, either, we move on to the superclass of this superclass, etc...*/
+
+//
+
+/*
+// When is inheritance worth using?
+Inheritance is a tool for building and specializing hierarchies of concepts; a
+subclass is always a special case of the superclass. If the class to be created
+is a special case of an existing class, this new class could be created by
+extending the existing class. For example, in the previously discussed car part
+scenario an engine is a part, but an engine has extra functionality that not
+all parts have.
+
+When inheriting, the subclass receives the functionality of the superclass. If
+the subclass doesn't need or use some of the inherited functionality,
+inheritance is not justifiable. Classes that inherit will inherit all the
+methods and interfaces from the superclass, so the subclass can be used in
+place of the superclass wherever the superclass is used. It's a good idea to
+keep the inheritance hierarchy shallow, since maintaining and further
+developing the hierarchy becomes more difficult as it grows larger. Generally
+speaking, if your inheritance hierarchy is more than 2 or 3 levels deep, the
+structure of the program could probably be improved.
+
+Inheritance is not useful in every scenario. For instance, extending the class
+Car with the class Part (or Engine) would be incorrect. A car includes an
+engine and parts, but an engine or a part is not a car. More generally, if an
+object owns or is composed of other objects, inheritance should not be used.
+
+When using inheritance, you should take care to ensure that the Single
+Responsibility Principle holds true. There should only be one reason for each
+class to change. If you notice that inheriting adds more responsibilities to a
+class, you should form multiple classes of the class.
+
+// Example of misusing inheritance
+Let's consider a postal service and some related classes. Customer includes the
+information related to a customer, and the class Order that inherits from the
+Customer class and includes the information about the ordered item. The class
+Order also has a method called postalAddress which represents the postal
+address that the order is shipped to.
+*/
+public class Customer {
+
+    private String name;
+    private String address;
+
+    public Customer(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+}
+public class Order extends Customer {
+
+    private String product;
+    private String count;
+
+    public Order(String product, String count, String name, String address) {
+        super(name, address);
+        this.product = product;
+        this.count = count;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public String postalAddress() {
+        return this.getName() + "\n" + this.getAddress();
+    }
+}
+
+/*
+Above inheritance is not used correctly. When inheriting, the subclass must be
+  a special case of the superclass; an order is definitely not a special case
+  of a customer. The misuse shows itself in how the code breaks the single
+  responsibility principle: the Order class is responsible both for maintaining
+  the customer information and the order information.
+
+The problem becomes very clear when we think of what a change in a customer's
+address would cause.
+
+In the case that an address changes, we would have to change every order object
+that relates to that customer. This is hardly ideal. A better solution would be
+to encapsulate the customer as an object variable of the Order class. Thinking
+more closely on the semantics of an order, this seems intuitive. An order has a
+customer.
+
+Let's modify the Order class so that it includes a reference to a Customer
+object.
+*/
+public class Order {
+
+    private Customer customer;
+    private String product;
+    private String count;
+
+    public Order(Customer customer, String product, String count) {
+        this.customer = customer;
+        this.product = product;
+        this.count = count;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public String postalAddress() {
+        return this.customer.getName() + "\n" + this.customer.getAddress();
+    }
+}
+
+/*This version of the Order class is better. The method postalAddress uses the
+customer reference to obtain the postal address instead of inheriting the class
+Customer. This helps both the maintenance of the program and its concrete
+functionality.
+
+Now, when a customer changes, all you need to do is change the customer
+information; there is no need to change the orders.*/
