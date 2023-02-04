@@ -233,10 +233,10 @@ borrowers.put(new Book("Test Driven Development", 1999, "..."), "Arto");
 System.out.println(borrowers.get(bookObject));
 System.out.println(borrowers.get(new Book("Book Object", 2000, "...")));
 System.out.println(borrowers.get(new Book("Test Driven Development", 1999, "...")));
-Sample output
-Pekka
-null
-null
+// Sample output
+// Pekka
+// null
+// null
 
 /*We find the borrower when searching for the same object that was given as a key
 to the hash map's put method. However, when searching by the exact same book
