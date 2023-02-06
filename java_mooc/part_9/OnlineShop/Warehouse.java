@@ -18,28 +18,34 @@ public class Warehouse {
     }
 
     public int price(String product) {
-        for (String key : this.productsPrice.keySet()) {
-            if (key.equals(product)) {
-                return this.productsPrice.get(key);
-            }
-        }
-        return -99;
+        // for (String key : this.productsPrice.keySet()) {
+        //     if (key.equals(product)) {
+        //         return this.productsPrice.get(key);
+        //     }
+        // }
+        // return -99;
+
+        // better
+        return this.productsPrice.getOrDefault(product, -99);
     }
 
     public int stock(String product) {
-        for (String key : this.productsStock.keySet()) {
-            if (key.equals(product)) {
-                return this.productsStock.get(key);
-            }
-        }
-        return 0;
+        // for (String key : this.productsStock.keySet()) {
+        //     if (key.equals(product)) {
+        //         return this.productsStock.get(key);
+        //     }
+        // }
+        // return 0;
+
+        // better
+        return this.productsStock.getOrDefault(product, 0);
     }
 
     public boolean take(String product) {
         int value = this.productsStock.getOrDefault(product, 0);
         if (value > 0) {
-            value -= 1;
-            this.productsStock.put(product, value);
+            // value -= 1;
+            this.productsStock.put(product, value - 1);
             return true;
         }
         return false;

@@ -32,8 +32,8 @@ public class Store {
             // Don't touch any of the other code!
 
             if (this.warehouse.stock(product) > 0) {
-                cart.add(product, warehouse.price(product));
                 this.warehouse.take(product);
+                cart.add(product, this.warehouse.price(product));
             }
 
 

@@ -15,6 +15,10 @@ public class ShoppingCart {
             return;
         }
         cart.put(product, new Item(product, 1, price));
+
+        // alt
+        // this.cart.putIfAbsent(product, new Item(product, 0, price));
+        // this.cart.get(product).increaseQuantity();
     }
 
     public int price() {
