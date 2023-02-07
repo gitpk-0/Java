@@ -25,6 +25,7 @@ public class PositiveNumbers {
         List<Integer> values = numbers.stream()
                 .filter(value -> value > 0)
                 .collect(Collectors.toList());
+                // .collect(Collectors.toCollection(ArrayList::new))
         return values;
     }
 
