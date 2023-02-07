@@ -8,7 +8,7 @@ public class AverageOfNumbers {
        Scanner scanner = new Scanner(System.in);
        // Write your program here
 
-        System.out.println("Input numbers, type 'end' to stop");
+        System.out.println("Input numbers, type \"end\" to stop");
         ArrayList<String> inputs = new ArrayList<>();
 
         while (true) {
