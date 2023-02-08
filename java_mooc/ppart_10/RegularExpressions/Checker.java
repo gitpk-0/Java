@@ -21,6 +21,9 @@ public class Checker {
             System.out.println("The form is incorrect.");
             return false;
         }
+
+        // or
+        // return string.matches("[aeiou]*");
     }
 
     public boolean timeOfDay(String string) {
@@ -31,6 +34,9 @@ public class Checker {
             System.out.println("The form is incorrect.");
             return false;
         }
+
+        // or
+        // return string.matches("([01][0123456789]|2[0123]):[012345][0123456789]:[012345][0123456789]");
     }
 
 }
