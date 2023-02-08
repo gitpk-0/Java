@@ -25,6 +25,6 @@ public class Human implements Comparable<Human> {
 
     @Override
     public int compareTo(Human human) {
-        return human.getWage() - this.wage;
+        return human.getWage() - this.getWage();
     }
 }
