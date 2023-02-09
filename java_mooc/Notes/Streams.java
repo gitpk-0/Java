@@ -303,6 +303,43 @@ Sample output
 2
 8
 
+/*The reduce method is useful when you want to combine stream elements to some
+other form. The parameters accepted by the method have the following format:
+reduce(*initialState*, (*previous*, *object*) -> *actions on the object*).
+
+As an example, you can calculate the sum of an integer list using the reduce
+method as follows.*/
+
+ArrayList<Integer> values = new ArrayList<>();
+values.add(7);
+values.add(3);
+values.add(2);
+values.add(1);
+
+int sum = values.stream()
+    .reduce(0, (previousSum, value) -> previousSum + value);
+System.out.println(sum);
+// Sample output
+// 13
+
+/*In the same way, we can form a combined row-separated string from a list of
+strings.*/
+
+ArrayList<String> words = new ArrayList<>();
+words.add("First");
+words.add("Second");
+words.add("Third");
+words.add("Fourth");
+
+String combined = words.stream()
+    .reduce("", (previousString, word) -> previousString + word + "\n");
+System.out.println(combined);
+// Sample output
+// First
+// Second
+// Third
+// Fourth
+
 /*// Intermediate Operations
 Intermediate stream operations are methods that return a stream. Since the value
 returned is a stream, we can call intermediate operations sequentially. Typical
